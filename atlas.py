@@ -27,7 +27,10 @@ class MainWindow(QMainWindow):
 
     def click_btn(self):
         name = self.input.text()
-        self.label.setText(name)
+        name1 = int(name) * 2
+        name2 = str(name1)
+
+        self.label.setText(name2)
 
 
 app = QApplication(sys.argv)
