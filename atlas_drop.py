@@ -5,7 +5,7 @@ import pandas as pd
 class MainWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Atlas, Shehpherd of Atlantic")
+        self.setWindowTitle("Atlas, Shehpherd of Atlantis")
         self.resize(720, 480)
         self.setAcceptDrops(True)
 
@@ -20,9 +20,14 @@ class MainWidget(QMainWindow):
     def dropEvent(self, event):
         files = [u.toLocalFile() for u in event.mimeData().urls()]
         for f in files:
-            csv_file = f
-            df = pd.read_csv(csv_file)
-            print(df["ID"])
+            path = f
+            df = pd.read_csv(path)
+            df["Position"] = df["Position"] * 3
+            df.to_csv(path,index=False)
+            print("Success")
+            
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
