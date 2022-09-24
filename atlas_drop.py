@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QVBoxLayout, QWidget, QPushButton
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QVBoxLayout, QWidget, QPushButton, QMessageBox
 import sys
 import pandas as pd
 
@@ -24,10 +24,19 @@ class MainWidget(QMainWindow):
             df = pd.read_csv(path)
             df["Position"] = df["Position"] * 3
             df.to_csv(path,index=False)
+
+            length = len(df)
+            message = f"Succesfully transformed to {length} rows!"
+
             print("Success")
+
+            msg = QMessageBox()
+            msg.setWindowTitle(" ")
+            msg.setText(message)
+            msg.exec()
+
+    
             
-
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
